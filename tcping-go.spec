@@ -11,7 +11,7 @@ License:        MIT
 URL:            https://github.com/pouriyajamshidi/tcping
 Source0:        %{url}/archive/v%{version}.tar.gz
 
-BuildRequires:  golang make tar
+BuildRequires:  git golang make tar
 
 %description
 A cross-platform ping program for TCP ports inspired by the Linux's ping
