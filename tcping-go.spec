@@ -1,4 +1,5 @@
 %global debug_package %{nil}
+%global _prj_name tcping
 
 Name:           tcping-go
 Version:        2.5.0
@@ -8,7 +9,7 @@ Provides:       tcping
 
 License:        MIT
 URL:            https://github.com/pouriyajamshidi/tcping
-Source0:        https://github.com/pouriyajamshidi/tcping/archive/v%{version}.tar.gz
+Source0:        %{url}/archive/v%{version}.tar.gz
 
 BuildRequires:  golang make tar
 
@@ -18,7 +19,7 @@ utility. This program will send TCP probes to an IP address or a hostname
 specified by you and prints the results. It supports both IPv4 and IPv6.
 
 %prep
-%autosetup
+%autosetup -n %{_prj_name}-%{version}
 
 %build
 make build_linux_static
@@ -30,12 +31,12 @@ make test
 %install
 # bin
 mkdir -p %{buildroot}%{_bindir}
-install -Dpm 755 -t %{buildroot}%{_bindir} executables/tcping
+install -Dpm 755 -t %{buildroot}%{_bindir} executables/%{_prj_name}
 
 %files
 %license LICENSE
 %doc CHANGELOG.md README.md
-%{_bindir}/tcping
+%{_bindir}/%{_prj_name}
 
 %changelog
 * Wed Feb 28 2024 cyqsimon - 2.5.0-1
