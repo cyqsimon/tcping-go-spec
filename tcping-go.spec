@@ -22,8 +22,11 @@ specified by you and prints the results. It supports both IPv4 and IPv6.
 %autosetup -n %{_prj_name}-%{version}
 
 %build
-make build_linux_static
-tar -xf executables/tcping_Linux_static.tar.gz
+go build -ldflags "-s -w" -o executables/tcping
+
+# Make target available > 2.5.0
+#make build_linux_static
+#tar -xf executables/tcping_Linux_static.tar.gz
 
 %check
 make test
