@@ -2,8 +2,8 @@
 %global _prj_name tcping
 
 Name:           tcping-go
-Version:        2.5.0
-Release:        2%{?dist}
+Version:        2.6.0
+Release:        1%{?dist}
 Summary:        Ping TCP ports using tcping. Inspired by Linux's ping utility. Written in Go
 Provides:       tcping
 # EPEL 8 has tcping, a C implementation that does the same thing
@@ -44,6 +44,9 @@ install -Dpm 755 -t %{buildroot}%{_bindir} executables/%{_prj_name}
 %{_bindir}/%{_prj_name}
 
 %changelog
+* Sun Oct 06 2024 cyqsimon - 2.6.0-1
+- Release 2.6.0
+
 * Wed Feb 28 2024 cyqsimon - 2.5.0-2
 - Declare conflict with `tcping`
 
