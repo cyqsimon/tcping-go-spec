@@ -3,7 +3,7 @@
 
 Name:           tcping-go
 Version:        2.6.0
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        Ping TCP ports using tcping. Inspired by Linux's ping utility. Written in Go
 Provides:       tcping
 # EPEL 8 has tcping, a C implementation that does the same thing
@@ -59,7 +59,7 @@ make test
 %install
 # bin
 mkdir -p %{buildroot}%{_bindir}
-install -Dpm 755 -t %{buildroot}%{_bindir} executables/%{_prj_name}
+install -Dpm 755 -t %{buildroot}%{_bindir} %{_prj_name}
 
 %files
 %license LICENSE
@@ -67,6 +67,9 @@ install -Dpm 755 -t %{buildroot}%{_bindir} executables/%{_prj_name}
 %{_bindir}/%{_prj_name}
 
 %changelog
+* Mon Oct 07 2024 cyqsimon - 2.6.0-4
+- Fix binary install source
+
 * Mon Oct 07 2024 cyqsimon - 2.6.0-3
 - Manually patch out `make build_debian_package` in Makefile
   - See https://github.com/pouriyajamshidi/tcping/issues/242
