@@ -1,0 +1,13 @@
+diff --git a/Makefile b/Makefile
+index e49660d..01d0354 100644
+--- a/Makefile
++++ b/Makefile
+@@ -56,8 +56,6 @@ build_linux_static:
+ 	@tar -czvf $(EXEC_DIR)tcping_Linux_static.tar.gz -C $(EXEC_DIR) tcping > /dev/null
+ 	@sha256sum $(EXEC_DIR)tcping_Linux_static.tar.gz
+ 
+-	@$(MAKE) build_debian_package
+-
+ 	@echo "[+] Removing the static Linux binary"
+ 	@rm $(EXEC_DIR)tcping
+ 
