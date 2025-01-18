@@ -2,8 +2,8 @@
 %global _prj_name tcping
 
 Name:           tcping-go
-Version:        2.6.0
-Release:        4%{?dist}
+Version:        2.7.0
+Release:        1%{?dist}
 Summary:        Ping TCP ports using tcping. Inspired by Linux's ping utility. Written in Go
 Provides:       tcping
 # EPEL 8 has tcping, a C implementation that does the same thing
@@ -12,7 +12,6 @@ Conflicts:      tcping
 License:        MIT
 URL:            https://github.com/pouriyajamshidi/tcping
 Source0:        %{url}/archive/v%{version}.tar.gz
-Patch0:         no-debian-build.patch
 
 BuildRequires:  curl gcc git make tar
 
@@ -22,7 +21,7 @@ utility. This program will send TCP probes to an IP address or a hostname
 specified by you and prints the results. It supports both IPv4 and IPv6.
 
 %prep
-%autosetup -n %{_prj_name}-%{version} -p1
+%autosetup -n %{_prj_name}-%{version}
 
 # Use latest official stable Go build
 _GO_VER="$(curl -Lf https://golang.org/VERSION?m=text | head -n1)"
@@ -47,8 +46,7 @@ tar -xf "${_GO_DL_NAME}"
 _GO_BIN_DIR=$(realpath "go/bin")
 export PATH="${_GO_BIN_DIR}:${PATH}"
 
-make create_dirs build_linux_static
-tar -xf executables/tcping_Linux_static.tar.gz
+make
 
 %check
 _GO_BIN_DIR=$(realpath "go/bin")
@@ -58,8 +56,7 @@ make test
 
 %install
 # bin
-mkdir -p %{buildroot}%{_bindir}
-install -Dpm 755 -t %{buildroot}%{_bindir} %{_prj_name}
+install -Dpm 755 -t %{buildroot}%{_bindir} target/%{_prj_name}
 
 %files
 %license LICENSE
@@ -67,6 +64,9 @@ install -Dpm 755 -t %{buildroot}%{_bindir} %{_prj_name}
 %{_bindir}/%{_prj_name}
 
 %changelog
+* Sat Jan 18 2025 cyqsimon - 2.7.0-1
+- Release 2.7.0
+
 * Mon Oct 07 2024 cyqsimon - 2.6.0-4
 - Fix binary install source
 
