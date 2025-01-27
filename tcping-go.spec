@@ -2,7 +2,7 @@
 %global _prj_name tcping
 
 Name:           tcping-go
-Version:        2.7.0
+Version:        2.7.1
 Release:        1%{?dist}
 Summary:        Ping TCP ports using tcping. Inspired by Linux's ping utility. Written in Go
 Provides:       tcping
@@ -64,6 +64,9 @@ install -Dpm 755 -t %{buildroot}%{_bindir} target/%{_prj_name}
 %{_bindir}/%{_prj_name}
 
 %changelog
+* Mon Jan 27 2025 cyqsimon - 2.7.1-1
+- Release 2.7.1
+
 * Sat Jan 18 2025 cyqsimon - 2.7.0-1
 - Release 2.7.0
 
